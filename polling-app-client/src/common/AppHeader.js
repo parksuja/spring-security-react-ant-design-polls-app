@@ -5,7 +5,8 @@ import {
 } from 'react-router-dom';
 import './AppHeader.css';
 import pollIcon from '../poll.svg';
-import { Layout, Menu, Dropdown, Icon } from 'antd';
+import { Layout, Menu, Dropdown} from 'antd';
+import Icon from "@ant-design/icons";
 const Header = Layout.Header;
     
 class AppHeader extends Component {
@@ -24,9 +25,13 @@ class AppHeader extends Component {
         let menuItems;
         if(this.props.currentUser) {
           menuItems = [
+              <Menu.Item key="/upload">
+                  <Link to="/video/upload">Video</Link>
+              </Menu.Item>,
             <Menu.Item key="/">
               <Link to="/">
                 <Icon type="home" className="nav-icon" />
+                  Home
               </Link>
             </Menu.Item>,
             <Menu.Item key="/poll/new">
@@ -34,10 +39,11 @@ class AppHeader extends Component {
               <img src={pollIcon} alt="poll" className="poll-icon" />
             </Link>
           </Menu.Item>,
-          <Menu.Item key="/profile" className="profile-menu">
+          <Menu.Item key="/profile" className="profile-menu" >
                 <ProfileDropdownMenu 
                   currentUser={this.props.currentUser} 
                   handleMenuClick={this.handleMenuClick}/>
+              Profile
             </Menu.Item>
           ]; 
         } else {
